@@ -1,7 +1,9 @@
 #include<iostream>
+#include<string>
 
 int main(){
-std::cout<<"which topic you want to study"
-std::getline(std::cin,topic)
+std::string topic;
+std::cout<<"which topic you want to study";
+std::getline(std::cin,topic);
 return 0;
 }
