@@ -1,0 +1,7 @@
+#include<iostream>
+
+int main(){
+std::cout<<"which topic you want to study"
+std::getline(std::cin,topic)
+return 0;
+}
