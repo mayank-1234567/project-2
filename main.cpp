@@ -15,7 +15,7 @@ std::string tas;
 while (i!=0){std::cout<<"tell fixed task"<<"\n";
 std::getline(std::cin,tas);
 task.push_back(tas);
-std::cout<<"tell time if fixed task"<<"\n";
+std::cout<<"tell time for fixed task"<<"\n";
 std::cout<<"from"<<"\n";
 std::cin>>from;
 std::cout<<"to"<<"\n";
@@ -45,7 +45,7 @@ f_task.push_back(n_task);
 hours.push_back(hour);
 std::cout<<"enter 1 or 0 "<<"\n";
 std::cin>>c;
-i=c
+i=c;
 }
 
 return 0;
