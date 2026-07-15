@@ -33,9 +33,25 @@ return 0;
 
 int flexible_task(){
 int i{1};
+int c;
+std:: string n_task;
+int hour;
+while (i!=0){
+std::cout<<"enter task"<<"\n";
+std::cin>>n_task;
+std::cout<<"number of hours"<<"\n";
+std::cin>>hour;
+f_task.push_back(n_task);
+hours.push_back(hour);
+std::cout<<"enter 1 or 0 "<<"\n";
+std::cin>>c;
+i=c
+}
+
 return 0;
 }
 int main(){
 fixed_task();
+flexible_task();
 return 0;
 }
