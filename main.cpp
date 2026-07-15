@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<limits>
 #include<vector>
 std:: vector<int>from_time;
 std:: vector<int>to_time;
@@ -24,6 +25,7 @@ from_time.push_back(from);
 to_time.push_back(to);
 std::cout<<"to add more fixed task enter 1 or to switch to flexible task enter 0"<<"\n";
 std::cin>>c;
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
 i=c;
 
 
@@ -45,6 +47,7 @@ f_task.push_back(n_task);
 hours.push_back(hour);
 std::cout<<"enter 1 or 0 "<<"\n";
 std::cin>>c;
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
 i=c;
 }
 
