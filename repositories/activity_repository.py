@@ -1,7 +1,5 @@
 """
 Activity Repository
--------------------
-Handles all database operations related to activities.
 """
 
 from core.database import DatabaseManager
@@ -25,47 +23,36 @@ class ActivityRepository:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
 
                 title TEXT,
-
                 description TEXT,
-
                 activity_type TEXT,
 
                 category TEXT,
-
                 subject TEXT,
 
                 priority INTEGER,
-
                 difficulty INTEGER,
 
                 estimated_minutes INTEGER,
-
                 actual_minutes INTEGER,
 
                 start_date TEXT,
-
                 due_date TEXT,
 
                 scheduled_date TEXT,
-
                 scheduled_start TEXT,
-
                 scheduled_end TEXT,
 
                 status TEXT,
-
                 progress REAL,
 
                 goal_id INTEGER,
 
                 recurring INTEGER,
-
                 recurrence_rule TEXT,
 
                 energy_required INTEGER,
 
                 tags TEXT,
-
                 notes TEXT,
 
                 ai_score REAL,
@@ -122,6 +109,7 @@ class ActivityRepository:
                 ?
 
             )
+
             """, (
 
                 activity.title,
@@ -160,5 +148,113 @@ class ActivityRepository:
             cursor = conn.cursor()
 
             cursor.execute("SELECT * FROM activities")
+
+            return cursor.fetchall()
+
+    def get_by_id(self, activity_id):
+
+        with self.db.connect() as conn:
+
+            cursor = conn.cursor()
+
+            cursor.execute(
+
+                "SELECT * FROM activities WHERE id=?",
+
+                (activity_id,)
+
+            )
+
+            return cursor.fetchone()
+
+    def delete(self, activity_id):
+
+        with self.db.connect() as conn:
+
+            cursor = conn.cursor()
+
+            cursor.execute(
+
+                "DELETE FROM activities WHERE id=?",
+
+                (activity_id,)
+
+            )
+
+            conn.commit()
+
+    def archive(self, activity_id):
+
+        with self.db.connect() as conn:
+
+            cursor = conn.cursor()
+
+            cursor.execute(
+
+                """
+
+                UPDATE activities
+
+                SET archived=1
+
+                WHERE id=?
+
+                """,
+
+                (activity_id,)
+
+            )
+
+            conn.commit()
+
+    def complete(self, activity_id):
+
+        with self.db.connect() as conn:
+
+            cursor = conn.cursor()
+
+            cursor.execute(
+
+                """
+
+                UPDATE activities
+
+                SET
+
+                    status='Completed',
+
+                    progress=100
+
+                WHERE id=?
+
+                """,
+
+                (activity_id,)
+
+            )
+
+            conn.commit()
+
+    def search(self, keyword):
+
+        with self.db.connect() as conn:
+
+            cursor = conn.cursor()
+
+            cursor.execute(
+
+                """
+
+                SELECT *
+
+                FROM activities
+
+                WHERE title LIKE ?
+
+                """,
+
+                (f"%{keyword}%",)
+
+            )
 
             return cursor.fetchall()
