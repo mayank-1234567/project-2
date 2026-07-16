@@ -1,26 +1,47 @@
 import streamlit as st
 
+from config.config import Config
 from core.database import DatabaseManager
 
 st.set_page_config(
-    page_title="AI Productivity Optimizer",
+    page_title=Config.APP_NAME,
     page_icon="🚀",
     layout="wide"
 )
 
-# Initialize database
 db = DatabaseManager()
 db.initialize_database()
 
-st.title("🚀 AI Personal Productivity & Schedule Optimizer")
+st.title(f"🚀 {Config.APP_NAME}")
 
-st.success("Database connected successfully!")
+st.caption(f"Version {Config.VERSION}")
 
-st.write("""
+st.success("Foundation initialized successfully.")
+
+st.write(
+    """
 Welcome!
 
-The application foundation has been created.
+This project will become an AI-powered productivity assistant.
 
-Next step:
-➡ First-time user profile setup.
-""")
+Current Progress:
+
+✅ Configuration System
+
+✅ Database
+
+⬜ User Profile
+
+⬜ Task Manager
+
+⬜ Goals
+
+⬜ Habits
+
+⬜ Scheduler
+
+⬜ Analytics
+
+⬜ AI Engine
+"""
+)
