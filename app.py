@@ -2,6 +2,8 @@ import streamlit as st
 
 from config.config import Config
 from core.database import DatabaseManager
+from services.profile_service import ProfileService
+from ui.profile_page import first_time_setup
 
 st.set_page_config(
     page_title=Config.APP_NAME,
@@ -12,36 +14,18 @@ st.set_page_config(
 db = DatabaseManager()
 db.initialize_database()
 
-st.title(f"🚀 {Config.APP_NAME}")
+profile = ProfileService()
 
-st.caption(f"Version {Config.VERSION}")
+if not profile.profile_exists():
 
-st.success("Foundation initialized successfully.")
+    first_time_setup()
 
-st.write(
-    """
-Welcome!
+else:
 
-This project will become an AI-powered productivity assistant.
+    user = profile.get_profile()
 
-Current Progress:
+    st.title(f"👋 Welcome {user[1]}")
 
-✅ Configuration System
+    st.success("Profile Loaded Successfully")
 
-✅ Database
-
-⬜ User Profile
-
-⬜ Task Manager
-
-⬜ Goals
-
-⬜ Habits
-
-⬜ Scheduler
-
-⬜ Analytics
-
-⬜ AI Engine
-"""
-)
+    st.write("Dashboard coming in the next phase.")
