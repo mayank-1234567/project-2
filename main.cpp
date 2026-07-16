@@ -96,8 +96,9 @@ void optimize() {
     std::ranges::sort(fixed_task.begin(), fixed_task.end(), cmp);
 std::ranges::sort(flexible_task.begin(), flexible_task.end(),cmp1)
     for (int i{0}; i<fixed_task.size(); ++i) {
-        int between{fixed_task[i].to-fixed_task[i].from};
+        int between{fixed_task[i].to-fixed_task[i+1].from};
         for (int j{0}; j<flexible_task.size(); ++j) {
+
 }
     }
     }
