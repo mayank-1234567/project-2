@@ -88,12 +88,17 @@ struct schedule {
 bool cmp(const fixedtask& a, const fixedtask& b ) {
     return a.to>b.to;
 }
+bool cmp1(const flexibletask& a,cont flexible& b){
+return a.difficulty>b.difficulty;}
+
 std::vector<schedule> schedule;
 void optimize() {
     std::ranges::sort(fixed_task.begin(), fixed_task.end(), cmp);
+std::ranges::sort(flexible_task.begin(), flexible_task.end(),cmp1)
     for (int i{0}; i<fixed_task.size(); ++i) {
         int between{fixed_task[i].to-fixed_task[i].from};
-        for (int j{0}; j<flexible_task.size(); ++j) {}
+        for (int j{0}; j<flexible_task.size(); ++j) {
+}
     }
     }
         //optimize time taken
